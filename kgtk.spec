@@ -1,4 +1,5 @@
-Summary:	KGtk (Use KDE Dialogs in Gtk Apps)
+Summary:	KGtk (Use KDE Dialogs in GTK+ Apps)
+Summary(pl):	KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
 Name:		kgtk
 Version:	0.3
 Release:	0.1
@@ -15,11 +16,18 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This is an LD_PRELOAD library that allows Gtk applications to use
+This is an LD_PRELOAD library that allows GTK+ applications to use
 KDE's file dialogs when run under KDE. This will only work under KDE,
 as the KDE dialog portion is implemented as a KDED module that is
 loaded at KDE startup. This creates a UNIX socket through which the
-Gtk apps communicate.
+GTK+ apps communicate.
+
+%description -l pl
+To jest biblioteka wczytywana przez LD_PRELOAD pozwalaj±ca aplikacjom
+GTK+ korzystaæ z okien dialogowych wyboru plików z KDE w czasie
+dzia³ania KDE. Dzia³a to tylko pod KDE, jako ¿e czê¶æ dialogowa KDE
+jest zaimplementowana jako modu³ KDED wczytywany przy starcie KDE.
+Tworzy gniazdo uniksowe, z którym komunikuj± siê aplikacje GTK+.
 
 %prep
 %setup -q
