@@ -1,8 +1,0 @@
---- kgtk-0.3/qt/kqt-wrapper.sh.in~	2006-03-06 00:54:45.000000000 +0200
-+++ kgtk-0.3/qt/kqt-wrapper.sh.in	2006-03-26 19:52:12.000000000 +0300
-@@ -1,4 +1,4 @@
--#!/bin/bash
-+#!/bin/sh
- 
- app=`basename $0`
- 
