@@ -56,17 +56,17 @@ cp -f {gtk,qt}/*-wrapper.sh $RPM_BUILD_ROOT%{_bindir}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%{_libdir}/libkgtk.so
-%{_libdir}/kde3/kded_kdialogd.so
+%attr(755,root,root) %{_libdir}/libkgtk.so
+%attr(755,root,root) %{_libdir}/kde3/kded_kdialogd.so
 %{_libdir}/kde3/kded_kdialogd.la
-%{_libdir}/libkqt.so
+%attr(755,root,root) %{_libdir}/libkqt.so
 %{_libdir}/libkqt.la
 %{_datadir}/services/kded/kdialogd.desktop
-
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
