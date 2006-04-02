@@ -2,12 +2,11 @@ Summary:	KGtk (Use KDE Dialogs in GTK+ Apps)
 Summary(pl):	KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
 Name:		kgtk
 Version:	0.3
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://home.freeuk.com/cpdrummond/%{name}-%{version}.tar.gz
 # Source0-md5:	4502601b7a92895b04f4306b9c0f2f65
-Patch0:		%{name}-sh.patch
 URL:		http://www.kde-look.org/content/show.php?content=36077
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -31,7 +30,6 @@ Tworzy gniazdo uniksowe, z którym komunikuj± siê aplikacje GTK+.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
@@ -47,25 +45,28 @@ cp -f /usr/share/automake/config.sub admin
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT%{_bindir}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir} \
-	kdelnkdir=%{_desktopdir} \
 
-%find_lang %{name} --with-kde
+%{__sed} -i '1s|/bin/bash|/bin/sh|' {gtk,qt}/*-wrapper.sh
+cp -f {gtk,qt}/*-wrapper.sh $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS README
 %attr(755,root,root) %{_bindir}/*
-%{_pixmapsdir}/*
-%{_desktopdir}/*
-%{_iconsdir}/*/*/apps/%{name}.png
-%{_datadir}/mimelnk/application/*
-%{_datadir}/apps/%{name}
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%{_libdir}/libkgtk.so
+%{_libdir}/kde3/kded_kdialogd.so
+%{_libdir}/kde3/kded_kdialogd.la
+%{_libdir}/libkqt.so
+%{_libdir}/libkqt.la
+%{_datadir}/services/kded/kdialogd.desktop
+
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
