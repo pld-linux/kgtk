@@ -2,7 +2,7 @@ Summary:	KGtk (Use KDE Dialogs in GTK+ Apps)
 Summary(pl):	KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
 Name:		kgtk
 Version:	0.4
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Libraries
 Source0:	http://home.freeuk.com/cpdrummond/%{name}-%{version}.tar.gz
@@ -51,7 +51,7 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 	DESTDIR=$RPM_BUILD_ROOT \
 
 %{__sed} -i '1s|/bin/bash|/bin/sh|' {gtk,qt}/*-wrapper.sh
-cp -f {gtk,qt}/*-wrapper.sh $RPM_BUILD_ROOT%{_bindir}
+mv -f   $RPM_BUILD_ROOT/usr/local/bin/*.sh $RPM_BUILD_ROOT%{_bindir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,4 +69,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kded_kdialogd.la
 %attr(755,root,root) %{_libdir}/libkqt.so
 %{_libdir}/libkqt.la
+%{_libdir}/libkgtk.la
 %{_datadir}/services/kded/kdialogd.desktop
