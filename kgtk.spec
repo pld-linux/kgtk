@@ -1,5 +1,5 @@
 Summary:	KGtk (Use KDE Dialogs in GTK+ Apps)
-Summary(pl.UTF-8):   KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
+Summary(pl.UTF-8):	KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
 Name:		kgtk
 Version:	0.7
 Release:	0.1
