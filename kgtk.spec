@@ -12,7 +12,9 @@ Patch1:		%{name}-am110.patch
 URL:		http://www.kde-look.org/content/show.php?content=36077
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	glitz-devel
 BuildRequires:	kdelibs-devel >= 9:3.2.0
+BuildRequires:	libltdl-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
