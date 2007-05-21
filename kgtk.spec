@@ -6,7 +6,9 @@ Release:	0.1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://home.freeuk.com/cpdrummond/%{name}-%{version}.tar.gz
-# Source0-md5:	ee392124600c5a308371ce5163deec10
+# Source0-md5:	2cde8a09508773cf2f9028912be4fbbe
+Patch0:		kde-ac260.patch
+Patch1:		%{name}-am110.patch
 URL:		http://www.kde-look.org/content/show.php?content=36077
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -31,6 +33,8 @@ Tworzy gniazdo uniksowe, z którym komunikują się aplikacje GTK+.
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
 
 %build
 cp -f /usr/share/automake/config.sub admin
