@@ -43,23 +43,22 @@ export QTDIR=%{_prefix}
 install -d build
 cd build
 %cmake \
-        -DCMAKE_INSTALL_PREFIX=%{_prefix} \
-        -DLIB_INSTALL_DIR=%{_libdir} \
-        -DKGTK_QT3=true \
-        -DKGTK_QT4=false \
+	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
+	-DLIB_INSTALL_DIR=%{_libdir} \
+	-DKGTK_QT3=true \
+	-DKGTK_QT4=false \
 %if "%{_lib}" == "lib64"
 	-DLIB_SUFFIX=64 \
 %endif 
-        ../
-                        
+	../
+
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
-cd build
-%{__make} install \
+%{__make} -C build install \
         DESTDIR=$RPM_BUILD_ROOT \
         kde_htmldir=%{_kdedocdir} \
         kde_libs_htmldir=%{_kdedocdir}
@@ -72,7 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f build/%{name}.lang
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README
 %attr(755,root,root) %{_bindir}/*
