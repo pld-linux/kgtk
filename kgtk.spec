@@ -1,13 +1,16 @@
+#
+# TODO:	alternate qt4 build ("Cant compile Qt3/KDE3 at the same time as Qt4/KDE4")
+#
 %define	_name	KGtk
 Summary:	KGtk (Use KDE Dialogs in GTK+ Apps)
 Summary(pl.UTF-8):	KGtk - wykorzystywanie okien dialogowych KDE w aplikacjach GTK+
 Name:		kgtk
-Version:	0.9.4
+Version:	0.10.0
 Release:	1
 License:	GPL v2
 Group:		Libraries
 Source0:	http://home.freeuk.com/cpdrummond/%{_name}-%{version}.tar.bz2
-# Source0-md5:	a6fde9e4520e1f347ff6a48cda95337a
+# Source0-md5:	5b6cc96a437216e204eb650e4ca88b3e
 URL:		http://www.kde-look.org/content/show.php?content=36077
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -73,7 +76,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS ChangeLog README
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/kgtk
 %attr(755,root,root) %{_libdir}/kgtk/libkgtk2.so
